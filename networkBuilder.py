@@ -19,29 +19,7 @@ import matplotlib.pyplot as plt
 import os
 import cv2
 
-def dataPrep():
-	path="HouseImages"
-
-	trainingImages1=[]
-	trainingImages2=[]
-	trainingImages3=[]
-	trainingImages4=[]
-
-
-	for root, dirs, files in os.walk(path):
-	    for name in files:
-	    	filePath=os.path.join(root,name)
-	    	print(filePath)
-	    	img=cv2.imread(filePath)
-	    	if ("frontal" in filePath):
-	    		trainingImages1.append(img)
-	    	if ("kitchen" in filePath):
-	    		trainingImages2.append(img)
-	    	if ("bathroom" in filePath):
-	    		trainingImages3.append(img)
-	    	if ("bedroom." in filePath):
-	    		trainingImages4.append(img)
-	return     trainingImages1,trainingImages2,trainingImages3,trainingImages4		
+from util import  dataPrep
 
 
 
@@ -86,7 +64,7 @@ opt = Adam(lr=1e-3, decay=1e-3 / 200)
 model.compile(loss="mean_absolute_percentage_error", optimizer=opt)
 
 
-trainingImages1,trainingImages2,trainingImages3,trainingImages4	=dataPrep()
+trainingImages1,trainingImages2,trainingImages3,trainingImages4,trainY	=dataPrep()
 model.fit([trainingImages1,trainingImages2,trainingImages3,trainingImages4],trainY,validation_data=([testImages1,testImages2,testImages3,testImages4],testY),epochs=200,batch_size=8)
 
 
