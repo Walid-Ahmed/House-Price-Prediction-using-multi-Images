@@ -1,10 +1,13 @@
 import os
 import cv2
 import pandas as pd
+from keras.preprocessing.image import img_to_array
+import numpy as np
 
+
+width,height=128,128
 
 def dataPrep():
-
 
 	priceDict=dict()
 	print("[INFO] loading house attributes...")
@@ -16,12 +19,15 @@ def dataPrep():
 	houseID=1
 	for price in prices:
 		priceDict[houseID]=int(price)
+		print("[INFO] Price of HOUSE with id {} is {}".format(houseID,price))
 		houseID=houseID+1
-		print(houseID)
+	print("-----------------------------------------------------------------------------------")
+	
 
-	print(len(prices))	
+	print("[INFO] Loading images..............")
 
-	print(priceDict[135])
+
+
 
 
 
@@ -34,16 +40,29 @@ def dataPrep():
 	trainY=[]
 
 
-
+	houseIds=[]  #growing list of house ids added to trainY
 	for root, dirs, files in os.walk(path):
 	    for name in files:
 	    	if('.DS' in  name):
 	    		continue
 	    	filePath=os.path.join(root,name)
 	    	houseID=int(name.split("_")[0])
-	    	print(houseID,filePath)
-	    	trainY.append(priceDict[houseID])
+	    	#print(houseID,filePath)
+
+	    	if not (houseID in houseIds):
+	    		trainY.append(priceDict[houseID])
+	    		houseIds.append(houseID)
+	    		print("[INFO] Adding images of house with id {} and price {}".format(houseID,priceDict[houseID]))
+
+
+
+	    		
+
 	    	img=cv2.imread(filePath)
+	    	img = cv2.resize(img, (width,height))
+
+	    	img = img_to_array(img)	
+
 	    	if ("frontal" in filePath):
 	    		trainingImages1.append(img)
 	    	if ("kitchen" in filePath):
@@ -54,9 +73,17 @@ def dataPrep():
 	    		trainingImages4.append(img)
 
 
+    
+
+	x1 = np.array(trainingImages1, dtype="float") / 255.0
+	x2 = np.array(trainingImages2, dtype="float") / 255.0
+	x3 = np.array(trainingImages3, dtype="float") / 255.0
+	x4 = np.array(trainingImages4, dtype="float") / 255.0
+
+	for houseID,price in zip(houseIds,trainY): 
+		print("[INFO] House with id {} and price {}".format(houseID,price))
+
+	print("-----------------------------------------------------------------------------------")
 
 
-	
-
-
-	return     trainingImages1,trainingImages2,trainingImages3,trainingImages4,trainY		
+	return     x1,x2,x3,x4, np.array(trainY)		
