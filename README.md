@@ -2,10 +2,10 @@
 
 This repo uses deep learning to predict the price of a house beased on four images
 
-1.Bathroom
-2.Kitchen
-3.Frontal
-4.Bedroom
+1. Bathroom
+2. Kitchen
+3. Frontal
+4. Bedroom
 
 Each image is fed to a branch of convolution  network, features are extracted from each image then concatenated  and all features are fed to a fully connected NN to predict the price
 
