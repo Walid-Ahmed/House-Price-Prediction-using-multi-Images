@@ -1,10 +1,10 @@
 # multiImageInputRegression
 
-##Usage
+## Usage
 
 python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag False --weightSharing False
 
-##Description
+## Description
 
 The model used is as the following:
 
