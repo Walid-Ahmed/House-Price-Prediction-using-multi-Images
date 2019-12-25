@@ -20,3 +20,9 @@ python train.py --numOfEpochs  20 --width  128 --height 128 --channels 3  --norm
 The model used is as the following:
 
 <img src="https://github.com/Walid-Ahmed/multiImageInputRegression/blob/master/model.png"  align="middle">
+
+
+Special thanks to [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)   for his  [great post](https://www.pyimagesearch.com/2019/01/28/keras-regression-and-cnns//) that inspired this tutourial. In his code he concetenated the four images into one image and it was wort to try using different branches for each image
+
+
+
