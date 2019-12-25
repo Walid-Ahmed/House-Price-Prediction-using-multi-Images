@@ -5,9 +5,8 @@ from keras.preprocessing.image import img_to_array
 import numpy as np
 
 
-width,height=128,128
 
-def dataPrep():
+def dataPrep(width,height,normalizeFlag):
 
 	priceDict=dict()
 	print("[INFO] loading house attributes...")
@@ -15,10 +14,19 @@ def dataPrep():
 	cols = ["bedrooms", "bathrooms", "area", "zipcode", "price"]
 	df = pd.read_csv(inputPath, sep=" ", header=None, names=cols)
 	prices=df["price"].tolist()
+	#prices = [ int(x) for x in prices ]
+	maximumPrice=max(prices)
+
+	if(normalizeFlag):
+		for i in range(len(prices)):
+			prices[i]=prices[i]/maximumPrice
+
+	print(prices)	
+		
 
 	houseID=1
 	for price in prices:
-		priceDict[houseID]=int(price)
+		priceDict[houseID]=float(price)
 		print("[INFO] Price of HOUSE with id {} is {}".format(houseID,price))
 		houseID=houseID+1
 	print("-----------------------------------------------------------------------------------")
@@ -86,4 +94,4 @@ def dataPrep():
 	print("-----------------------------------------------------------------------------------")
 
 
-	return     x1,x2,x3,x4, np.array(trainY)		
+	return     x1,x2,x3,x4, np.array(trainY),maximumPrice		

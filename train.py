@@ -1,4 +1,6 @@
-#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3
+#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag False
+#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag True
+
 
 from  networkBuilder import getModel
 from util import  dataPrep
@@ -13,7 +15,7 @@ def train(numOfEpochs):
 	model=getModel(imageInputShape)
 	opt = Adam(lr=1e-3, decay=1e-3 / 200)
 	model.compile(loss="mean_absolute_percentage_error", optimizer=opt)
-	trainingImages1,trainingImages2,trainingImages3,trainingImages4,prices	=dataPrep()
+	trainingImages1,trainingImages2,trainingImages3,trainingImages4,prices,maximumPrice	=dataPrep(width,height,normalizeFlag)
 	(trainX1, testX1, trainX2, testX2, trainX3, testX3, trainX4, testX4, trainY, testY) = train_test_split(trainingImages1,trainingImages2,trainingImages3,trainingImages4,prices, test_size=0.25, random_state=42)
 
 
@@ -67,6 +69,10 @@ if __name__ == "__main__":
 	ap.add_argument("--width", required=True, help="path to image file")
 	ap.add_argument("--height", required=True, help="path to image file")
 	ap.add_argument("--channels", default=3, help="path to image file")
+	ap.add_argument("--normalizeFlag", default=False, help="path to image file")
+
+
+
 
 	#read the arguments
 	args = vars(ap.parse_args())
@@ -74,6 +80,14 @@ if __name__ == "__main__":
 	width=int(args["width"])
 	height=int(args["height"])
 	channels=int(args["channels"])
+	normalizeFlag=args["normalizeFlag"]
+	print(normalizeFlag)
+
+	if (normalizeFlag=="True"):
+		normalizeFlag=True
+	else:
+		normalizeFlag=False	
+
 
 
 
