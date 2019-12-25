@@ -1,5 +1,5 @@
-#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag False
-#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag True
+#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag False --weightSharing False
+#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag True --weightSharing False
 
 
 from  networkBuilder import getModel
@@ -12,7 +12,7 @@ import argparse
 
 def train(numOfEpochs):
 	imageInputShape=(width,height,channels)
-	model=getModel(imageInputShape)
+	model=getModel(imageInputShape,weightSharing)
 	opt = Adam(lr=1e-3, decay=1e-3 / 200)
 	model.compile(loss="mean_absolute_percentage_error", optimizer=opt)
 	trainingImages1,trainingImages2,trainingImages3,trainingImages4,prices,maximumPrice	=dataPrep(width,height,normalizeFlag)
@@ -70,6 +70,8 @@ if __name__ == "__main__":
 	ap.add_argument("--height", required=True, help="path to image file")
 	ap.add_argument("--channels", default=3, help="path to image file")
 	ap.add_argument("--normalizeFlag", default=False, help="path to image file")
+	ap.add_argument("--weightSharing", default=False, help="path to image file")
+
 
 
 
@@ -81,6 +83,8 @@ if __name__ == "__main__":
 	height=int(args["height"])
 	channels=int(args["channels"])
 	normalizeFlag=args["normalizeFlag"]
+	weightSharing=args["weightSharing"]
+
 	print(normalizeFlag)
 
 	if (normalizeFlag=="True"):
@@ -88,7 +92,10 @@ if __name__ == "__main__":
 	else:
 		normalizeFlag=False	
 
-
+	if (weightSharing=="True"):
+		weightSharing=True
+	else:
+		weightSharing=False	
 
 
 	train(numOfEpochs)

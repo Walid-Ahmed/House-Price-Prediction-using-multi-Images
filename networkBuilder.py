@@ -34,32 +34,41 @@ def getBaseNetwork(imageInputShape):
 	return net1
 
 
-def getModel(imageInputShape):
-	branch1=getBaseNetwork(imageInputShape)
-	branch2=getBaseNetwork(imageInputShape)
-	branch3=getBaseNetwork(imageInputShape)
-	branch4=getBaseNetwork(imageInputShape)
+def getModel(imageInputShape,weightSharing):
 
-	combined=concatenate([branch1.output,branch2.output,branch3.output,branch4.output])
+	if (weightSharing):
 
-	# add a dense layer
-	dense1=Dense(64,activation='relu')(combined)
-	# add a dense layer
-	dense2=Dense(64,activation='relu')(dense1)
-	# add another dense layer
-	out=Dense(1,activation='linear')(dense2)
+		print("Code not ready yet to deal with weight sharing")
+		print("Program will now exit")
+		exit()
+
+	else:
 
 
-	model=Model(inputs=[branch1.input,branch2.input,branch3.input,branch4.input], outputs=out)
-	model.summary()
+		branch1=getBaseNetwork(imageInputShape)
+		branch2=getBaseNetwork(imageInputShape)
+		branch3=getBaseNetwork(imageInputShape)
+		branch4=getBaseNetwork(imageInputShape)
 
-	plot_model(model, to_file='model.png')
-	import matplotlib.image as mpimg
-	img=mpimg.imread('model.png')
-	imgplot = plt.imshow(img)
-	plt.show()
+		combined=concatenate([branch1.output,branch2.output,branch3.output,branch4.output])
 
-	return model
+		# add a dense layer
+		dense1=Dense(64,activation='relu')(combined)
+		# add a dense layer
+		dense2=Dense(64,activation='relu')(dense1)
+		# add another dense layer
+		out=Dense(1,activation='linear')(dense2)
+
+
+		model=Model(inputs=[branch1.input,branch2.input,branch3.input,branch4.input], outputs=out)
+		model.summary()
+
+		plot_model(model, to_file='model.png')
+		import matplotlib.image as mpimg
+		img=mpimg.imread('model.png')
+		imgplot = plt.imshow(img)
+		plt.show()
+		return model
 
 
 
