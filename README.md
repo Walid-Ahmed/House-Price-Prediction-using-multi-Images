@@ -24,7 +24,7 @@ The model used is as the following:
 
 
 ## Credits
-Special thanks to [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)   for his  [great post](https://www.pyimagesearch.com/2019/01/28/keras-regression-and-cnns//) that inspired this tutourial. In his code he concetenated the four images into one image and it was wort to try using different branches for each image
+Special thanks to [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)   for his  [great post](https://www.pyimagesearch.com/2019/01/28/keras-regression-and-cnns//) that inspired this tutourial. In his code he concetenated the four images into one image and it was worth a shot  to try using different branches for each image.
 
 
 
