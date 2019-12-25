@@ -1,4 +1,4 @@
-# multiImageInputRegression
+# House Price Prediction using multi Images 
 
 This repo uses deep learning to predict the price of a house beased on four images, each image is fed to a branch of convloution netweork, features are extracted from each image then concetenated and all features are fed to a fully connected NN to predict the price
 
