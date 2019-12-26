@@ -50,7 +50,7 @@ def getCommonNetwork(inputs):
 		x=conv2(x)
 		x=pool2(x)
 		x=flat(x)
-		output.append(x1)
+		output.append(x)
 
 
 

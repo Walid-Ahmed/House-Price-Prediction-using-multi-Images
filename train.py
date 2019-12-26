@@ -57,6 +57,8 @@ def train(numOfEpochs):
 	plt.legend(loc="upper right")
 	plt.show()
 
+	return model,maximumPrice,testX1,testX2,testX3,testX4,testY
+
 
 
 if __name__ == "__main__":
@@ -98,4 +100,29 @@ if __name__ == "__main__":
 		weightSharing=False	
 
 
-	train(numOfEpochs)
+	model,maximumPrice,testX1,testX2,testX3,testX4,testY=train(numOfEpochs)
+
+
+
+	# make predictions on the testing data
+	print("[INFO] predicting house prices...")
+	preds = model.predict([testX1,testX2,testX3,testX4])
+	print(preds)
+
+
+	if(normalizeFlag):
+		#readjust house prices
+		testY=testY*maximumPrice
+		preds=preds*maximumPrice
+
+
+
+	plt.plot  ( testY ,label="Actual price")
+	plt.plot  ( preds, label="Predicted price" )
+	plt.title ('House prices')
+	plt.xlabel("Point #")
+	plt.ylabel("Price")
+	plt.legend(loc="upper right")
+	plt.savefig("HousePrices.png")
+	plt.show()
+	print("[INFO] predicted vs actual price saved to HousePrices.png")
