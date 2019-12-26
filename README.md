@@ -15,6 +15,9 @@ The dataset is from   https://github.com/emanhamed/Houses-dataset
 
 python train.py --numOfEpochs  20 --width  128 --height 128 --channels 3  --normalizeFlag False --weightSharing False
 
+
+<img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/plot_acc.png"  align="middle">
+
 ## Description
 
 The model used is as the following:
