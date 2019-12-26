@@ -33,7 +33,7 @@ def getBaseNetwork(imageInputShape):
 	net1.summary()
 	return net1
 
-def getCommonNetwork(inputA,inputB,inputC,inputD):
+def getCommonNetwork(inputs):
 
 	conv1 = Conv2D(32, kernel_size=4, activation='relu')
 	pool1 = MaxPooling2D(pool_size=(2, 2))
@@ -42,38 +42,22 @@ def getCommonNetwork(inputA,inputB,inputC,inputD):
 	flat = Flatten()
 
 
+	output=[]
+	for input in inputs:
 
-	x1=conv1(inputA)
-	x1=pool1(x1)
-	x1=conv2(x1)
-	x1=pool2(x1)
-	x1=flat(x1)
-
-
-	x2=conv1(inputB)
-	x2=pool1(x2)
-	x2=conv2(x2)
-	x2=pool2(x2)
-	x2=flat(x2)
-
-
-	x3=conv1(inputC)
-	x3=pool1(x3)
-	x3=conv2(x3)
-	x3=pool2(x3)
-	x3=flat(x3)
-
-
-	x4=conv1(inputD)
-	x4=pool1(x4)
-	x4=conv2(x4)
-	x4=pool2(x4)
-	x4=flat(x4)
+		x=conv1(input)
+		x=pool1(x)
+		x=conv2(x)
+		x=pool2(x)
+		x=flat(x)
+		output.append(x1)
 
 
 
 
-	return x1,x2,x3,x4
+
+
+	return output
 
 def getModel(imageInputShape,weightSharing):
 
@@ -87,8 +71,11 @@ def getModel(imageInputShape,weightSharing):
 		inputC = Input(shape=imageInputShape)
 		inputD = Input(shape=imageInputShape)
 
+		inputs=[inputA,inputB,inputC,inputD]
+
+
 		
-		op1,op2,op3,op4=getCommonNetwork(inputA,inputB,inputC,inputD)
+		output=getCommonNetwork(inputs)
 
 
 
@@ -98,7 +85,7 @@ def getModel(imageInputShape,weightSharing):
 		print("Code not ready yet to deal with weight sharing")
 		print("Program will now exit")
 
-		combined=concatenate([op1,op2,op3,op4])
+		combined=concatenate(output)
 
 
 
