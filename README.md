@@ -22,9 +22,9 @@ python train.py --numOfEpochs  20 --width  128 --height 128 --channels 3  --norm
 
 The model used is as the following:
 
-<img src="https://github.com/Walid-Ahmed/multiImageInputRegression/blob/master/model.png"  align="middle">
+<img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/model.png"  align="middle">
 
-<img src="https://github.com/Walid-Ahmed/multiImageInputRegression/blob/master/model.png"  align="middle">
+<img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSharedWeights.png"  align="middle">
 
 
 ## Credits
