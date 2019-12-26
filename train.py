@@ -1,5 +1,5 @@
-#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag False --weightSharing False
-#python train.py --numOfEpochs  2 --width  128 --height 128 --channels 3  --normalizeFlag True --weightSharing False
+#python train.py --numOfEpochs  20 --width  128 --height 128 --channels 3  --normalizeFlag True --weightSharing False  --batchSize  32
+#python train.py --numOfEpochs  20 --width  128 --height 128 --channels 3  --normalizeFlag True --weightSharing False   --batchSize  32
 
 
 from  networkBuilder import getModel
@@ -35,7 +35,7 @@ def train(numOfEpochs):
 
 
 
-	history=model.fit([trainX1,trainX2,trainX3,trainX4],trainY,validation_data=([testX1,testX2,testX3,testX4],testY),epochs=numOfEpochs,batch_size=8)
+	history=model.fit([trainX1,trainX2,trainX3,trainX4],trainY,validation_data=([testX1,testX2,testX3,testX4],testY),epochs=numOfEpochs,batch_size=batchSize)
 	validationLoss=(history.history['val_loss'])
 	trainingLoss=history.history['loss']
 
@@ -73,6 +73,8 @@ if __name__ == "__main__":
 	ap.add_argument("--channels", default=3, help="path to image file")
 	ap.add_argument("--normalizeFlag", default=False, help="path to image file")
 	ap.add_argument("--weightSharing", default=False, help="path to image file")
+	ap.add_argument("--batchSize", default=32, help="path to image file")
+
 
 
 
@@ -86,6 +88,7 @@ if __name__ == "__main__":
 	channels=int(args["channels"])
 	normalizeFlag=args["normalizeFlag"]
 	weightSharing=args["weightSharing"]
+	batchSize=int(args["batchSize"])
 
 	print(normalizeFlag)
 
