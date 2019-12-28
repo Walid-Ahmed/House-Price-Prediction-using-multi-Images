@@ -33,6 +33,11 @@ Trainable params: 3,458,801
 
 <img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSharedWeights.png"  align="middle">
 
+https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSummary_WeightSharing.png
+
+And model summary as following:
+
+<img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSummary_WeightSharing.png"  align="middle">
 
 ## Credits
 Special thanks to [Adrian Rosebrock](https://www.pyimagesearch.com/author/adrian/)   for his  [great post](https://www.pyimagesearch.com/2019/01/28/keras-regression-and-cnns//) that inspired this tutourial. In his code he concetenated the four images into one image and it was worth a shot  to try using different branches for each image.
