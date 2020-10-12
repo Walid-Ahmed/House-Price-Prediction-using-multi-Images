@@ -1,6 +1,6 @@
 # House Price Prediction using multi Images 
 
-This repo uses deep learning to predict the price of a house beased on four images
+This repo uses deep learning to predict the price of a house based on four images
 
 1. Bathroom
 2. Kitchen
