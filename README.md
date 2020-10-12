@@ -33,7 +33,6 @@ Trainable params: 3,458,801
 
 <img src="https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSharedWeights.png"  align="middle">
 
-https://github.com/Walid-Ahmed/House-Price-Prediction-using-multi-Images/blob/master/sampleImages/modelSummary_WeightSharing.png
 
 And model summary as following:
 
